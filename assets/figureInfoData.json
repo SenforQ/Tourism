@@ -1,0 +1,197 @@
+[
+  {
+    "figureId": 1,
+    "figureNickName": "Alice",
+    "figureIntroduction": "Alice is a cheerful and adventurous ENFP who loves exploring new places and making friends along the way.",
+    "figureHeaderIcon": "resource/resourceChat/1/p/1_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/1/v/1_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/1/p/1_p_2025_06_04_1.png",
+      "resource/resourceChat/1/p/1_p_2025_06_04_2.png",
+      "resource/resourceChat/1/p/1_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hi! I'm Alice, ready for a new adventure!"
+  },
+  {
+    "figureId": 2,
+    "figureNickName": "Ben",
+    "figureIntroduction": "Ben is a calm and reliable ISTJ who enjoys planning trips and ensuring everyone has a great time.",
+    "figureHeaderIcon": "resource/resourceChat/2/p/2_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/2/v/2_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/2/p/2_p_2025_06_04_1.png",
+      "resource/resourceChat/2/p/2_p_2025_06_04_2.png",
+      "resource/resourceChat/2/p/2_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hello! Ben here, let's make this trip unforgettable."
+  },
+  {
+    "figureId": 3,
+    "figureNickName": "Cathy",
+    "figureIntroduction": "Cathy is a creative and spontaneous INFP who loves photography and discovering hidden gems.",
+    "figureHeaderIcon": "resource/resourceChat/3/p/3_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/3/v/3_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/3/p/3_p_2025_06_04_1.png",
+      "resource/resourceChat/3/p/3_p_2025_06_04_2.png",
+      "resource/resourceChat/3/p/3_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hey! I'm Cathy, let's capture some memories together!"
+  },
+  {
+    "figureId": 4,
+    "figureNickName": "David",
+    "figureIntroduction": "David is an energetic and outgoing ESFP who brings fun and excitement to every journey.",
+    "figureHeaderIcon": "resource/resourceChat/4/p/4_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/4/v/4_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/4/p/4_p_2025_06_04_1.png",
+      "resource/resourceChat/4/p/4_p_2025_06_04_2.png",
+      "resource/resourceChat/4/p/4_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Yo! David here, ready to party and explore!"
+  },
+  {
+    "figureId": 5,
+    "figureNickName": "Ella",
+    "figureIntroduction": "Ella is a thoughtful and caring ISFJ who always looks out for her friends and loves cozy trips.",
+    "figureHeaderIcon": "resource/resourceChat/5/p/5_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/5/v/5_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/5/p/5_p_2025_06_04_1.png",
+      "resource/resourceChat/5/p/5_p_2025_06_04_2.png",
+      "resource/resourceChat/5/p/5_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hi, I'm Ella. Let's enjoy a relaxing journey together."
+  },
+  {
+    "figureId": 6,
+    "figureNickName": "Frank",
+    "figureIntroduction": "Frank is a logical and curious ENTP who loves debates, new ideas, and trying local food.",
+    "figureHeaderIcon": "resource/resourceChat/6/p/6_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/6/v/6_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/6/p/6_p_2025_06_04_1.png",
+      "resource/resourceChat/6/p/6_p_2025_06_04_2.png",
+      "resource/resourceChat/6/p/6_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Frank here! Ready for some fun conversations and food adventures?"
+  },
+  {
+    "figureId": 7,
+    "figureNickName": "Grace",
+    "figureIntroduction": "Grace is a free-spirited and artistic ISFP who enjoys spontaneous adventures. She loves experiencing new sensations and is always up for a creative journey.",
+    "figureHeaderIcon": "resource/resourceChat/7/p/7_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/7/v/7_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/7/p/7_p_2025_06_04_1.png",
+      "resource/resourceChat/7/p/7_p_2025_06_04_2.png",
+      "resource/resourceChat/7/p/7_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hi there! I'm Grace, and I love living in the moment. Let's create some amazing memories together!"
+  },
+  {
+    "figureId": 8,
+    "figureNickName": "Hannah",
+    "figureIntroduction": "Hannah is a confident and strategic ENTJ who enjoys leading and organizing travel plans. She values efficiency and achievement, making her a great companion for ambitious trips.",
+    "figureHeaderIcon": "resource/resourceChat/8/p/8_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/8/v/8_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/8/p/8_p_2025_06_04_1.png",
+      "resource/resourceChat/8/p/8_p_2025_06_04_2.png",
+      "resource/resourceChat/8/p/8_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hey! I'm Hannah, and I love taking charge of our adventures. Let's make this trip a success!"
+  },
+  {
+    "figureId": 9,
+    "figureNickName": "Ivy",
+    "figureIntroduction": "Ivy is a resourceful and adventurous ISTP who enjoys hands-on experiences. She loves exploring new places and is always ready for a challenge.",
+    "figureHeaderIcon": "resource/resourceChat/9/p/9_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/9/v/9_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/9/p/9_p_2025_06_04_1.png",
+      "resource/resourceChat/9/p/9_p_2025_06_04_2.png",
+      "resource/resourceChat/9/p/9_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hello! I'm Ivy, and I love diving into new experiences. Let's explore and discover together!"
+  },
+  {
+    "figureId": 10,
+    "figureNickName": "Jane",
+    "figureIntroduction": "Jane is a charismatic and empathetic ENFJ who enjoys bringing people together. She loves creating meaningful connections and is always ready to support others.",
+    "figureHeaderIcon": "resource/resourceChat/10/p/10_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/10/v/10_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/10/p/10_p_2025_06_04_1.png",
+      "resource/resourceChat/10/p/10_p_2025_06_04_2.png",
+      "resource/resourceChat/10/p/10_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hi everyone! I'm Jane, and I love making everyone feel welcome. Let's create a wonderful journey together!"
+  },
+  {
+    "figureId": 11,
+    "figureNickName": "Kate",
+    "figureIntroduction": "Kate is a strategic and independent INTJ who enjoys planning and executing travel plans. She values knowledge and innovation, making her a great companion for intellectual journeys.",
+    "figureHeaderIcon": "resource/resourceChat/11/p/11_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/11/v/11_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/11/p/11_p_2025_06_04_1.png",
+      "resource/resourceChat/11/p/11_p_2025_06_04_2.png",
+      "resource/resourceChat/11/p/11_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hey! I'm Kate, and I love planning our next adventure. Let's make it extraordinary!"
+  },
+  {
+    "figureId": 12,
+    "figureNickName": "Leo",
+    "figureIntroduction": "Leo is a bold and passionate ESTP who loves action, sports, and spontaneous road trips.",
+    "figureHeaderIcon": "resource/resourceChat/12/p/12_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/12/v/12_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/12/p/12_p_2025_06_04_1.png",
+      "resource/resourceChat/12/p/12_p_2025_06_04_2.png",
+      "resource/resourceChat/12/p/12_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Yo! Leo here, let's hit the road and have some fun!"
+  },
+  {
+    "figureId": 13,
+    "figureNickName": "Mia",
+    "figureIntroduction": "Mia is a gentle and artistic INFJ who enjoys quiet moments, art museums, and deep conversations.",
+    "figureHeaderIcon": "resource/resourceChat/13/p/13_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/13/v/13_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/13/p/13_p_2025_06_04_1.png",
+      "resource/resourceChat/13/p/13_p_2025_06_04_2.png",
+      "resource/resourceChat/13/p/13_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hi, I'm Mia. Let's find some inspiration together!"
+  },
+  {
+    "figureId": 14,
+    "figureNickName": "Noah",
+    "figureIntroduction": "Noah is a practical and supportive ESTJ who keeps the group organized and motivated.",
+    "figureHeaderIcon": "resource/resourceChat/14/p/14_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/14/v/14_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/14/p/14_p_2025_06_04_1.png",
+      "resource/resourceChat/14/p/14_p_2025_06_04_2.png",
+      "resource/resourceChat/14/p/14_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hello! I'm Noah, let's make this trip smooth and memorable."
+  },
+  {
+    "figureId": 15,
+    "figureNickName": "Olivia",
+    "figureIntroduction": "Olivia is a lively and optimistic ENFJ who loves meeting new people and sharing stories.",
+    "figureHeaderIcon": "resource/resourceChat/15/p/15_p_2025_06_04_1.png",
+    "figureShowVideo": "resource/resourceChat/15/v/15_v_2025_06_04_1.mp4",
+    "figureShowImgArray": [
+      "resource/resourceChat/15/p/15_p_2025_06_04_1.png",
+      "resource/resourceChat/15/p/15_p_2025_06_04_2.png",
+      "resource/resourceChat/15/p/15_p_2025_06_04_3.png"
+    ],
+    "figureSayHi": "Hi! I'm Olivia, can't wait to share some stories with you!"
+  }
+]
