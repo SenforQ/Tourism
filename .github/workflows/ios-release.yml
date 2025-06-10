@@ -94,7 +94,7 @@ jobs:
 
       - name: Upload to App Store using altool
         env:
-          IPA_PATH: "build/ios/ipa/meeya.ipa"
+          IPA_PATH: "build/ios/ipa/tourism.ipa"
           APPLE_ID: "guozhijun@cumulustech.shop"
           APP_SPECIFIC_PASSWORD: "kniy-hkyv-dxma-bbcp"
         run: |
