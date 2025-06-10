@@ -62,7 +62,7 @@ class MaldivesDetailPage extends StatelessWidget {
             // Day 1
             _dayCard(
               day: 'Day 1',
-              date: 'Jul 17',
+              date: 'Jul 18',
               title: 'Arrival & Kuta Beach',
               transport: '✈️ Flight → 🚗 Car',
               activities: [
