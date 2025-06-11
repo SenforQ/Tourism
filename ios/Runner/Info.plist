@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Tourism</string>
+	<string>Meeya</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -16,16 +16,6 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>tourism</string>
-	<key>NSCameraUsageDescription</key>
-	<string>The app intends to access your camera in order to modify your profile picture.</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>This app needs access to local network to connect to development servers</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>We need access to your microphone for voice calls.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>The app intends to access your Photo Library in order to modify your profile picture.</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>This identifier will be used to deliver personalized dance partner recommendations and improve your experience finding compatible dance partners.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -36,6 +26,16 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>The app intends to access your camera in order to modify your profile picture.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This app needs access to local network to connect to development servers</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to your microphone for voice calls.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app intends to access your Photo Library in order to modify your profile picture.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver personalized dance partner recommendations and improve your experience finding compatible dance partners.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
