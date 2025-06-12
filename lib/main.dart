@@ -7,6 +7,8 @@ import 'welcome_page.dart';
 import 'edit_profile_page.dart';
 import 'terms_of_service_page.dart';
 import 'privacy_policy_page.dart';
+import 'vip_subscribe_page.dart';
+import 'wallet_page.dart';
 
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         '/editProfile': (context) => const EditProfilePage(),
         '/terms': (context) => const TermsOfServicePage(),
         '/privacy': (context) => const PrivacyPolicyPage(),
+        '/vip': (context) => const VipSubscribePage(),
+        '/wallet': (context) => const WalletPage(),
       },
       debugShowCheckedModeBanner: false,
       navigatorObservers: [routeObserver],

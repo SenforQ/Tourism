@@ -15,11 +15,13 @@ class _MePageState extends State<MePage> {
   String? _nickname;
   String? _signature;
   String? _avatarPath;
+  bool _isVip = false;
 
   @override
   void initState() {
     super.initState();
     _initUserProfileIfNeeded().then((_) => _loadProfile());
+    _loadVipStatus();
   }
 
   Future<void> _initUserProfileIfNeeded() async {
@@ -43,6 +45,20 @@ class _MePageState extends State<MePage> {
     }
   }
 
+  Future<void> _loadVipStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isVip = prefs.getBool('is_vip') ?? false;
+    });
+    final expire = prefs.getInt('vip_expire_time');
+    if (expire != null) {
+      final dt = DateTime.fromMillisecondsSinceEpoch(expire);
+      debugPrint('[VIP] 当前VIP状态: [33m[1m[4m[7m$_isVip[0m, 到期时间: $dt');
+    } else {
+      debugPrint('[VIP] 当前VIP状态: $_isVip, 未设置到期时间');
+    }
+  }
+
   Future<void> _loadProfile() async {
     final prefs = await SharedPreferences.getInstance();
     final docDir = await getApplicationDocumentsDirectory();
@@ -56,6 +72,7 @@ class _MePageState extends State<MePage> {
         _avatarPath = null;
       }
     });
+    _loadVipStatus();
   }
 
   void _goToEditProfile() async {
@@ -72,6 +89,11 @@ class _MePageState extends State<MePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
+          IconButton(
+            icon: Image.asset('assets/resource/vip_2025_6_12.png',
+                width: 28, height: 28),
+            onPressed: () => Navigator.pushNamed(context, '/vip'),
+          ),
           IconButton(
             icon: const Icon(Icons.edit, color: Colors.white),
             onPressed: _goToEditProfile,
@@ -100,16 +122,34 @@ class _MePageState extends State<MePage> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(46),
-                    child:
-                        (_avatarPath != null &&
-                                _avatarPath!.isNotEmpty &&
-                                File(_avatarPath!).existsSync())
-                            ? Image.file(File(_avatarPath!), fit: BoxFit.cover)
-                            : Image.asset(
-                              'assets/resource/user_default_2025_6_4.png',
-                              fit: BoxFit.cover,
-                            ),
+                    child: (_avatarPath != null &&
+                            _avatarPath!.isNotEmpty &&
+                            File(_avatarPath!).existsSync())
+                        ? Image.file(File(_avatarPath!), fit: BoxFit.cover)
+                        : Image.asset(
+                            'assets/resource/user_default_2025_6_4.png',
+                            fit: BoxFit.cover,
+                          ),
                   ),
+                ),
+              ),
+              Positioned(
+                left: 24 + 92 - 16,
+                bottom: -46 + 4,
+                child: SizedBox(
+                  width: 12,
+                  height: 12,
+                  child: _isVip
+                      ? Image.asset('assets/resource/vip_detail_2025_6_12.png',
+                          width: 12, height: 12)
+                      : ColorFiltered(
+                          colorFilter: const ColorFilter.mode(
+                              Colors.grey, BlendMode.srcIn),
+                          child: Image.asset(
+                              'assets/resource/vip_detail_2025_6_12.png',
+                              width: 12,
+                              height: 12),
+                        ),
                 ),
               ),
             ],
@@ -159,6 +199,8 @@ class _MePageState extends State<MePage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  _buildListItem(context, 'Wallet', '/wallet'),
+                  const Divider(height: 1, color: Color(0xFFBABABA)),
                   _buildListItem(context, 'Terms of service', '/terms'),
                   const Divider(height: 1, color: Color(0xFFBABABA)),
                   _buildListItem(context, 'Privacy policy', '/privacy'),

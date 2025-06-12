@@ -94,10 +94,9 @@ class _HomePageState extends State<HomePage> with RouteAware {
 
       // 如果是首次加载，生成随机评论
       if (state.comments.isEmpty) {
-        final availableFigures =
-            allFigures
-                .where((ff) => ff.figureId >= 1 && ff.figureId <= 11)
-                .toList();
+        final availableFigures = allFigures
+            .where((ff) => ff.figureId >= 1 && ff.figureId <= 11)
+            .toList();
         for (int j = 0; j < state.commentCount; j++) {
           final user =
               availableFigures[random.nextInt(availableFigures.length)];
@@ -260,8 +259,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
                   child: SingleChildScrollView(
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
-                        minHeight:
-                            MediaQuery.of(context).size.height -
+                        minHeight: MediaQuery.of(context).size.height -
                             topAreaHeight -
                             56, // 56为TabBar高度
                       ),
@@ -289,8 +287,8 @@ class _HomePageState extends State<HomePage> with RouteAware {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder:
-                                        (context) => const MaldivesDetailPage(),
+                                    builder: (context) =>
+                                        const MaldivesDetailPage(),
                                   ),
                                 );
                               },
@@ -452,10 +450,9 @@ class _VideoCoverWidgetState extends State<VideoCoverWidget> {
         children: [
           AspectRatio(
             aspectRatio: _initialized ? _controller.value.aspectRatio : 16 / 9,
-            child:
-                _initialized
-                    ? VideoPlayer(_controller)
-                    : Container(color: Colors.black12),
+            child: _initialized
+                ? VideoPlayer(_controller)
+                : Container(color: Colors.black12),
           ),
           const Icon(Icons.play_circle_fill, size: 64, color: Colors.white70),
         ],
@@ -555,81 +552,80 @@ class _FriendCircleCardState extends State<FriendCircleCard> {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder:
-          (context) => Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF2F2F2F),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Color(0xFF2F2F2F),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 8),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.white24,
+                borderRadius: BorderRadius.circular(2),
+              ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 8),
-                Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Colors.white24,
-                    borderRadius: BorderRadius.circular(2),
+            const SizedBox(height: 8),
+            _buildActionButton('Report', const Color(0xFFFF3B30), () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ReportPage()),
+              );
+            }),
+            _buildActionButton('Block', const Color(0xFFFF3B30), () async {
+              Navigator.pop(context);
+              await FriendCircleStateManager.blockUser(
+                widget.data.figure.figureId,
+              );
+              if (widget.onBlocked != null)
+                widget.onBlocked!(widget.data.figure.figureId);
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'This user has been blocked/hidden and their posts will no longer appear.',
+                    ),
+                    backgroundColor: Color(0xFF363636),
+                    behavior: SnackBarBehavior.floating,
                   ),
-                ),
-                const SizedBox(height: 8),
-                _buildActionButton('Report', const Color(0xFFFF3B30), () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ReportPage()),
-                  );
-                }),
-                _buildActionButton('Block', const Color(0xFFFF3B30), () async {
-                  Navigator.pop(context);
-                  await FriendCircleStateManager.blockUser(
-                    widget.data.figure.figureId,
-                  );
-                  if (widget.onBlocked != null)
-                    widget.onBlocked!(widget.data.figure.figureId);
-                  if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'This user has been blocked/hidden and their posts will no longer appear.',
-                        ),
-                        backgroundColor: Color(0xFF363636),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
-                  }
-                }),
-                _buildActionButton('Hide', const Color(0xFFFF3B30), () async {
-                  Navigator.pop(context);
-                  await FriendCircleStateManager.blockUser(
-                    widget.data.figure.figureId,
-                  );
-                  if (widget.onBlocked != null)
-                    widget.onBlocked!(widget.data.figure.figureId);
-                  if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'This user has been blocked/hidden and their posts will no longer appear.',
-                        ),
-                        backgroundColor: Color(0xFF363636),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
-                  }
-                }),
-                const SizedBox(height: 8),
-                _buildActionButton(
-                  'Cancel',
-                  Colors.white,
-                  () => Navigator.pop(context),
-                  isCancel: true,
-                ),
-                const SizedBox(height: 8),
-              ],
+                );
+              }
+            }),
+            _buildActionButton('Hide', const Color(0xFFFF3B30), () async {
+              Navigator.pop(context);
+              await FriendCircleStateManager.blockUser(
+                widget.data.figure.figureId,
+              );
+              if (widget.onBlocked != null)
+                widget.onBlocked!(widget.data.figure.figureId);
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'This user has been blocked/hidden and their posts will no longer appear.',
+                    ),
+                    backgroundColor: Color(0xFF363636),
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+              }
+            }),
+            const SizedBox(height: 8),
+            _buildActionButton(
+              'Cancel',
+              Colors.white,
+              () => Navigator.pop(context),
+              isCancel: true,
             ),
-          ),
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
     );
   }
 
@@ -675,207 +671,233 @@ class _FriendCircleCardState extends State<FriendCircleCard> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       isScrollControlled: true,
-      builder:
-          (context) => Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Comments',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.close, color: Colors.white),
-                      ),
-                    ],
+                  const Text(
+                    'Comments',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  Flexible(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount:
-                          widget.data.comments
-                              .where((c) => !blockedUsers.contains(c.userName))
-                              .length,
-                      itemBuilder: (context, index) {
-                        final visibleComments =
-                            widget.data.comments
-                                .where(
-                                  (c) => !blockedUsers.contains(c.userName),
-                                )
-                                .toList();
-                        final comment = visibleComments[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child:
-                                    comment.userName == _userNickname
-                                        ? _userAvatarPath!.startsWith('assets/')
-                                            ? Image.asset(
-                                              _userAvatarPath!,
-                                              width: 32,
-                                              height: 32,
-                                              fit: BoxFit.cover,
-                                            )
-                                            : Image.file(
-                                              File(_userAvatarPath!),
-                                              width: 32,
-                                              height: 32,
-                                              fit: BoxFit.cover,
-                                            )
-                                        : Image.asset(
-                                          comment.userIcon,
-                                          width: 32,
-                                          height: 32,
-                                          fit: BoxFit.cover,
-                                        ),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close, color: Colors.white),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Flexible(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: widget.data.comments
+                      .where((c) => !blockedUsers.contains(c.userName))
+                      .length,
+                  itemBuilder: (context, index) {
+                    final visibleComments = widget.data.comments
+                        .where(
+                          (c) => !blockedUsers.contains(c.userName),
+                        )
+                        .toList();
+                    final comment = visibleComments[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: comment.userName == _userNickname
+                                ? _userAvatarPath!.startsWith('assets/')
+                                    ? Image.asset(
+                                        _userAvatarPath!,
+                                        width: 32,
+                                        height: 32,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.file(
+                                        File(_userAvatarPath!),
+                                        width: 32,
+                                        height: 32,
+                                        fit: BoxFit.cover,
+                                      )
+                                : Image.asset(
+                                    comment.userIcon,
+                                    width: 32,
+                                    height: 32,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                   children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          comment.userName,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        GestureDetector(
-                                          onTap: () {
-                                            _showCommentActionSheet(
-                                              comment.userName,
-                                            );
-                                          },
-                                          child: const Icon(
-                                            Icons.flag_outlined,
-                                            color: Colors.white38,
-                                            size: 18,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 4),
                                     Text(
-                                      comment.content,
+                                      comment.userName,
                                       style: const TextStyle(
-                                        color: Colors.white70,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 14,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    GestureDetector(
+                                      onTap: () {
+                                        _showCommentActionSheet(
+                                          comment.userName,
+                                        );
+                                      },
+                                      child: const Icon(
+                                        Icons.flag_outlined,
+                                        color: Colors.white38,
+                                        size: 18,
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF2F2F2F),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _commentController,
-                            style: const TextStyle(color: Colors.white),
-                            decoration: const InputDecoration(
-                              hintText: 'Write a comment...',
-                              hintStyle: TextStyle(color: Colors.white54),
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        GestureDetector(
-                          onTap: () async {
-                            if (_commentController.text.trim().isNotEmpty) {
-                              await FriendCircleStateManager.addComment(
-                                widget.data.figure.figureId,
-                                _CommentData(
-                                  userName: _userNickname ?? 'You',
-                                  userIcon:
-                                      _userAvatarPath ??
-                                      'assets/resource/user_default_2025_6_4.png',
-                                  content: _commentController.text.trim(),
-                                ),
-                              );
-                              setState(() {
-                                widget.data.state.commentCount++;
-                                widget.data.comments.add(
-                                  _CommentData(
-                                    userName: _userNickname ?? 'You',
-                                    userIcon:
-                                        _userAvatarPath ??
-                                        'assets/resource/user_default_2025_6_4.png',
-                                    content: _commentController.text.trim(),
+                                const SizedBox(height: 4),
+                                Text(
+                                  comment.content,
+                                  style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 14,
                                   ),
-                                );
-                              });
-                              Navigator.pop(context);
-                              _commentController.clear();
-                            }
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 8,
-                            ),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFF9D44E1), Color(0xFF59BCFA)],
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: const Text(
-                              'Send',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
+              const SizedBox(height: 16),
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2F2F2F),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _commentController,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
+                          hintText: 'Write a comment...',
+                          hintStyle: TextStyle(color: Colors.white54),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    GestureDetector(
+                      onTap: () async {
+                        final commentText = _commentController.text.trim();
+                        if (commentText.isNotEmpty) {
+                          final prefs = await SharedPreferences.getInstance();
+                          int coins = prefs.getInt('my_coins') ?? 0;
+                          if (coins < 10) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text('Insufficient Coins'),
+                                content: const Text(
+                                    'Posting a comment requires 10 coins. Your balance is insufficient.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
+                                      Navigator.pushNamed(context, '/wallet');
+                                    },
+                                    child: const Text('Go'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+                                    child: const Text('Cancel'),
+                                  ),
+                                ],
+                              ),
+                            );
+                            return;
+                          }
+                          // 扣除10 coins
+                          coins -= 10;
+                          await prefs.setInt('my_coins', coins);
+                          await FriendCircleStateManager.addComment(
+                            widget.data.figure.figureId,
+                            _CommentData(
+                              userName: _userNickname ?? 'You',
+                              userIcon: _userAvatarPath ??
+                                  'assets/resource/user_default_2025_6_4.png',
+                              content: commentText,
+                            ),
+                          );
+                          setState(() {
+                            widget.data.state.commentCount++;
+                            widget.data.comments.add(
+                              _CommentData(
+                                userName: _userNickname ?? 'You',
+                                userIcon: _userAvatarPath ??
+                                    'assets/resource/user_default_2025_6_4.png',
+                                content: commentText,
+                              ),
+                            );
+                          });
+                          Navigator.pop(context);
+                          _commentController.clear();
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF9D44E1), Color(0xFF59BCFA)],
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: const Text(
+                          'Send',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
+        ),
+      ),
     );
   }
 
@@ -883,99 +905,96 @@ class _FriendCircleCardState extends State<FriendCircleCard> {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder:
-          (context) => Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF2F2F2F),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Color(0xFF2F2F2F),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 8),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.white24,
+                borderRadius: BorderRadius.circular(2),
+              ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 8),
-                Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Colors.white24,
-                    borderRadius: BorderRadius.circular(2),
+            const SizedBox(height: 8),
+            _buildActionButton('Report', const Color(0xFFFF3B30), () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ReportPage()),
+              );
+            }),
+            _buildActionButton('Block', const Color(0xFFFF3B30), () async {
+              Navigator.pop(context);
+              await FriendCircleStateManager.blockCommentUser(userName);
+              // 重新统计未被屏蔽的评论数并更新
+              final blockedUsers =
+                  await FriendCircleStateManager.getBlockedCommentUsers();
+              final visibleComments = widget.data.comments
+                  .where((c) => !blockedUsers.contains(c.userName))
+                  .toList();
+              widget.data.state.commentCount = visibleComments.length;
+              await FriendCircleStateManager.saveState(
+                widget.data.figure.figureId,
+                widget.data.state,
+              );
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'This user has been blocked/hidden and their comments will no longer appear.',
+                    ),
+                    backgroundColor: Color(0xFF363636),
+                    behavior: SnackBarBehavior.floating,
                   ),
-                ),
-                const SizedBox(height: 8),
-                _buildActionButton('Report', const Color(0xFFFF3B30), () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ReportPage()),
-                  );
-                }),
-                _buildActionButton('Block', const Color(0xFFFF3B30), () async {
-                  Navigator.pop(context);
-                  await FriendCircleStateManager.blockCommentUser(userName);
-                  // 重新统计未被屏蔽的评论数并更新
-                  final blockedUsers =
-                      await FriendCircleStateManager.getBlockedCommentUsers();
-                  final visibleComments =
-                      widget.data.comments
-                          .where((c) => !blockedUsers.contains(c.userName))
-                          .toList();
-                  widget.data.state.commentCount = visibleComments.length;
-                  await FriendCircleStateManager.saveState(
-                    widget.data.figure.figureId,
-                    widget.data.state,
-                  );
-                  if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'This user has been blocked/hidden and their comments will no longer appear.',
-                        ),
-                        backgroundColor: Color(0xFF363636),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
-                    setState(() {});
-                  }
-                }),
-                _buildActionButton('Hide', const Color(0xFFFF3B30), () async {
-                  Navigator.pop(context);
-                  await FriendCircleStateManager.blockCommentUser(userName);
-                  // 重新统计未被屏蔽的评论数并更新
-                  final blockedUsers =
-                      await FriendCircleStateManager.getBlockedCommentUsers();
-                  final visibleComments =
-                      widget.data.comments
-                          .where((c) => !blockedUsers.contains(c.userName))
-                          .toList();
-                  widget.data.state.commentCount = visibleComments.length;
-                  await FriendCircleStateManager.saveState(
-                    widget.data.figure.figureId,
-                    widget.data.state,
-                  );
-                  if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'This user has been blocked/hidden and their comments will no longer appear.',
-                        ),
-                        backgroundColor: Color(0xFF363636),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
-                    setState(() {});
-                  }
-                }),
-                const SizedBox(height: 8),
-                _buildActionButton(
-                  'Cancel',
-                  Colors.white,
-                  () => Navigator.pop(context),
-                  isCancel: true,
-                ),
-                const SizedBox(height: 8),
-              ],
+                );
+                setState(() {});
+              }
+            }),
+            _buildActionButton('Hide', const Color(0xFFFF3B30), () async {
+              Navigator.pop(context);
+              await FriendCircleStateManager.blockCommentUser(userName);
+              // 重新统计未被屏蔽的评论数并更新
+              final blockedUsers =
+                  await FriendCircleStateManager.getBlockedCommentUsers();
+              final visibleComments = widget.data.comments
+                  .where((c) => !blockedUsers.contains(c.userName))
+                  .toList();
+              widget.data.state.commentCount = visibleComments.length;
+              await FriendCircleStateManager.saveState(
+                widget.data.figure.figureId,
+                widget.data.state,
+              );
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'This user has been blocked/hidden and their comments will no longer appear.',
+                    ),
+                    backgroundColor: Color(0xFF363636),
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+                setState(() {});
+              }
+            }),
+            const SizedBox(height: 8),
+            _buildActionButton(
+              'Cancel',
+              Colors.white,
+              () => Navigator.pop(context),
+              isCancel: true,
             ),
-          ),
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
     );
   }
 
@@ -1001,16 +1020,14 @@ class _FriendCircleCardState extends State<FriendCircleCard> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:
-                          (context) => ProfilePage(
-                            nickname: f.figureNickName,
-                            signature:
-                                f.figureIntroduction.isNotEmpty
-                                    ? f.figureIntroduction
-                                    : 'No personal signature yet',
-                            avatarPath: 'assets/' + f.figureHeaderIcon,
-                            figureId: f.figureId,
-                          ),
+                      builder: (context) => ProfilePage(
+                        nickname: f.figureNickName,
+                        signature: f.figureIntroduction.isNotEmpty
+                            ? f.figureIntroduction
+                            : 'No personal signature yet',
+                        avatarPath: 'assets/' + f.figureHeaderIcon,
+                        figureId: f.figureId,
+                      ),
                     ),
                   );
                 },
@@ -1104,10 +1121,9 @@ class _FriendCircleCardState extends State<FriendCircleCard> {
                   children: [
                     Icon(
                       Icons.favorite,
-                      color:
-                          state.liked
-                              ? const Color(0xFFFF5A5A)
-                              : Colors.white38,
+                      color: state.liked
+                          ? const Color(0xFFFF5A5A)
+                          : Colors.white38,
                       size: 22,
                     ),
                     const SizedBox(width: 4),
@@ -1172,9 +1188,8 @@ class _GradientCardWithVideoState extends State<_GradientCardWithVideo> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(
-        'assets/resource/resourceChat/10/v/10_v_2025_06_04_1.mp4',
-      )
-      ..initialize().then((_) {
+      'assets/resource/resourceChat/10/v/10_v_2025_06_04_1.mp4',
+    )..initialize().then((_) {
         setState(() {
           _initialized = true;
         });
@@ -1208,47 +1223,46 @@ class _GradientCardWithVideoState extends State<_GradientCardWithVideo> {
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
-            child:
-                _initialized
-                    ? SizedBox(
-                      width: cardWidth,
-                      height: 196,
-                      child: Stack(
-                        children: [
-                          VideoPlayer(_controller),
-                          if (!_controller.value.isPlaying)
-                            Positioned.fill(
-                              child: Container(
-                                color: Colors.black26,
-                                child: const Icon(
-                                  Icons.play_circle_fill,
-                                  color: Colors.white,
-                                  size: 64,
-                                ),
+            child: _initialized
+                ? SizedBox(
+                    width: cardWidth,
+                    height: 196,
+                    child: Stack(
+                      children: [
+                        VideoPlayer(_controller),
+                        if (!_controller.value.isPlaying)
+                          Positioned.fill(
+                            child: Container(
+                              color: Colors.black26,
+                              child: const Icon(
+                                Icons.play_circle_fill,
+                                color: Colors.white,
+                                size: 64,
                               ),
                             ),
-                          Positioned.fill(
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (_controller.value.isPlaying) {
-                                    _controller.pause();
-                                  } else {
-                                    _controller.play();
-                                  }
-                                });
-                              },
-                              child: Container(color: Colors.transparent),
-                            ),
                           ),
-                        ],
-                      ),
-                    )
-                    : Container(
-                      width: cardWidth,
-                      height: 196,
-                      color: Colors.black12,
+                        Positioned.fill(
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (_controller.value.isPlaying) {
+                                  _controller.pause();
+                                } else {
+                                  _controller.play();
+                                }
+                              });
+                            },
+                            child: Container(color: Colors.transparent),
+                          ),
+                        ),
+                      ],
                     ),
+                  )
+                : Container(
+                    width: cardWidth,
+                    height: 196,
+                    color: Colors.black12,
+                  ),
           ),
           const SizedBox(height: 10),
           const Padding(
@@ -1320,11 +1334,10 @@ class FriendCircleProvider {
     );
     final List<dynamic> jsonList = json.decode(jsonStr);
     // 只筛选ID为7-11的数据
-    final List<FigureInfo> figures =
-        jsonList
-            .map((e) => FigureInfo.fromJson(e))
-            .where((f) => f.figureId >= 7 && f.figureId <= 11)
-            .toList();
+    final List<FigureInfo> figures = jsonList
+        .map((e) => FigureInfo.fromJson(e))
+        .where((f) => f.figureId >= 7 && f.figureId <= 11)
+        .toList();
     return figures;
   }
 
@@ -1353,12 +1366,11 @@ class FriendCircleState {
   });
 
   Map<String, dynamic> toJson() => {
-    'likeCount': likeCount,
-    'commentCount': commentCount,
-    'liked': liked,
-    'followed': followed,
-    'comments':
-        comments
+        'likeCount': likeCount,
+        'commentCount': commentCount,
+        'liked': liked,
+        'followed': followed,
+        'comments': comments
             .map(
               (c) => {
                 'userName': c.userName,
@@ -1367,7 +1379,7 @@ class FriendCircleState {
               },
             )
             .toList(),
-  };
+      };
 
   factory FriendCircleState.fromJson(Map<String, dynamic> json) {
     return FriendCircleState(
@@ -1375,8 +1387,7 @@ class FriendCircleState {
       commentCount: json['commentCount'],
       liked: json['liked'],
       followed: json['followed'] ?? false,
-      comments:
-          (json['comments'] as List<dynamic>?)
+      comments: (json['comments'] as List<dynamic>?)
               ?.map(
                 (c) => _CommentData(
                   userName: c['userName'],
@@ -1538,27 +1549,26 @@ class _FriendCircleList extends StatelessWidget {
       );
     }
     return Column(
-      children:
-          items
-              .map(
-                (item) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 10,
-                  ),
-                  child: FriendCircleCard(
-                    key: ValueKey(item.figure.figureId),
-                    data: item,
-                    onLike: onLike,
-                    onUnlike: onUnlike,
-                    onComment: onComment,
-                    onFollow: onFollow,
-                    onUnfollow: onUnfollow,
-                    onBlocked: onBlocked,
-                  ),
-                ),
-              )
-              .toList(),
+      children: items
+          .map(
+            (item) => Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 14,
+                vertical: 10,
+              ),
+              child: FriendCircleCard(
+                key: ValueKey(item.figure.figureId),
+                data: item,
+                onLike: onLike,
+                onUnlike: onUnlike,
+                onComment: onComment,
+                onFollow: onFollow,
+                onUnfollow: onUnfollow,
+                onBlocked: onBlocked,
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }

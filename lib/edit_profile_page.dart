@@ -18,6 +18,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   File? _avatarFile;
   bool _initialized = false;
   String? _avatarPath;
+  bool _isVip = false;
 
   @override
   void didChangeDependencies() {
@@ -31,6 +32,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         text: args?['signature'] ?? '',
       );
       _loadProfile();
+      _loadVipStatus();
       _initialized = true;
     }
   }
@@ -51,6 +53,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
     });
   }
 
+  Future<void> _loadVipStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isVip = prefs.getBool('is_vip') ?? false;
+    });
+  }
+
   Future<void> _saveProfile() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('profile_nickname', _nicknameController.text);
@@ -58,10 +67,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
     if (_avatarFile != null) {
       final docDir = await getApplicationDocumentsDirectory();
       final absPath = _avatarFile!.path;
-      String relativePath =
-          absPath.startsWith(docDir.path)
-              ? absPath.substring(docDir.path.length + 1)
-              : absPath;
+      String relativePath = absPath.startsWith(docDir.path)
+          ? absPath.substring(docDir.path.length + 1)
+          : absPath;
       await prefs.setString('profile_avatar', relativePath);
     }
   }
@@ -79,7 +87,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
         _avatarFile = saved;
         _avatarPath = fileName;
       });
-      await _saveProfile();
     }
   }
 
@@ -110,13 +117,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(46),
-                  child:
-                      _avatarFile != null
-                          ? Image.file(_avatarFile!, fit: BoxFit.cover)
-                          : Image.asset(
-                            'assets/resource/user_default_2025_6_4.png',
-                            fit: BoxFit.cover,
-                          ),
+                  child: _avatarFile != null
+                      ? Image.file(_avatarFile!, fit: BoxFit.cover)
+                      : Image.asset(
+                          'assets/resource/user_default_2025_6_4.png',
+                          fit: BoxFit.cover,
+                        ),
                 ),
               ),
             ),
@@ -154,23 +160,66 @@ class _EditProfilePageState extends State<EditProfilePage> {
             const Spacer(),
             ElevatedButton(
               onPressed: () async {
-                await _saveProfile();
-                Navigator.pop(context, {
-                  'nickname': _nicknameController.text,
-                  'signature': _signatureController.text,
-                  'avatarPath': _avatarFile?.path,
-                });
+                if (_isVip) {
+                  await _saveProfile();
+                  Navigator.pop(context, {
+                    'nickname': _nicknameController.text,
+                    'signature': _signatureController.text,
+                    'avatarPath': _avatarFile?.path,
+                  });
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('VIP Required'),
+                      content: const Text(
+                          'You need to become a VIP to edit your profile.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pushNamed('/vip');
+                          },
+                          child: const Text('Go'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF5BBAFA),
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
                 minimumSize: const Size.fromHeight(48),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                 ),
+                elevation: 0,
               ),
-              child: const Text(
-                'Save',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF9B49E2), Color(0xFF5BBAFA)],
+                    begin: Alignment(-1, 0.5),
+                    end: Alignment(1, 0.5),
+                  ),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  constraints: const BoxConstraints(minHeight: 48),
+                  child: const Text(
+                    'Save',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
             ),
           ],
